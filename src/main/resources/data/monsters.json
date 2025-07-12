@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Fallen",
+    "maxHp": 120,
+    "regenPerSecond": 0.2,
+    "resistances": { "PHYSICAL": 1.0, "FIRE": 1.2 },
+    "spawnWeight": 50
+  },
+  {
+    "name": "Zombie",
+    "maxHp": 200,
+    "regenPerSecond": 0.5,
+    "resistances": { "PHYSICAL": 1.1, "FIRE": 0.8 },
+    "spawnWeight": 30
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]

@@ -1,0 +1,12 @@
+{
+  "zones": [
+    {
+      "name": "Blood Moor",
+      "encounters": ["Fallen", "Zombie", "Quill Rat"]
+    },
+    {
+      "name": "Cold Plains",
+      "encounters": ["Fallen", "Fallen Shaman", "Gargantuan Beast", "Dark Hunter", "Dark Spearwoman"]
+    }
+  ]
+}
