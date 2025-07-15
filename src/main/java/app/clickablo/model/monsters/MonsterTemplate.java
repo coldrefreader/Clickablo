@@ -1,25 +1,25 @@
 package app.clickablo.model.monsters;
 
 import app.clickablo.model.shared_features.DamageType;
-import lombok.Data;
+import lombok.Value;
 
 import java.util.List;
 import java.util.Map;
 
-@Data
+@Value
 public class MonsterTemplate {
 
-    private final String name;
-    private final String imagePath;
+    String name;
+    String imagePath;
 
-    private final int baseHealth;
-    private final double baseRegen;
+    int baseHealth;
+    double baseRegen;
 
-    private final Map<DamageType, Double> resistances;
+    Map<DamageType, Double> resistances;
 
-    private final int weight; // probability of being picked
+    int weight; // probability of being picked
 
-    public Monster instantiate(boolean isChampion, List<Monster> companions) {
+    public Monster instantiate(int monsterLevel, boolean isChampion, List<Monster> companions) {
 
         double hpMultiplier = isChampion ? 1.5 : 1.0;
         double regenMultiplier = isChampion ? 1.5 : 1.0;
@@ -29,6 +29,7 @@ public class MonsterTemplate {
 
         Monster m = new Monster(
                 name,
+                monsterLevel,
                 finalHp,
                 finalRegen,
                 resistances,

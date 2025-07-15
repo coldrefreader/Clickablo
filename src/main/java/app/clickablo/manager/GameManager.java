@@ -39,10 +39,11 @@ public class GameManager {
         String tmplName = currentZone.peekNextTemplate();
         MonsterTemplate tmpl = templatesByName.get(tmplName);
 
+        int monsterLevel = currentZone.getNextIndex() + 1;
         boolean isChamp = rng.nextDouble() < 0.1;
         boolean isRare = rng.nextDouble() < 0.05;
         List<Monster> companions = List.of();
-        Monster m = tmpl.instantiate(isChamp, companions);
+        Monster m = tmpl.instantiate(monsterLevel, isChamp, companions);
         currentMonster = m;
         if (!isRare) currentZone.advance();
         return m;

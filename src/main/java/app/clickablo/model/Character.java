@@ -1,6 +1,7 @@
 package app.clickablo.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,18 +9,19 @@ import java.util.List;
 import java.util.Map;
 
 @Data
+@NoArgsConstructor
 public class Character {
 
-    private final String name;
-    private final CharacterClass characterClass;
+    private String name;
+    private CharacterClass characterClass;
 
     private int level;
     private int exp;
     private int gold;
 
-    private final Map<Stat, Integer> stats;
-    private final List<Item> inventory;
-    private final Map<String, Boolean> monstersDefeated;
+    private Map<Stat, Integer> stats;
+    private List<Item> inventory;
+    private Map<String, Boolean> monstersDefeated;
 
     public Character(String name,
                      CharacterClass characterClass,

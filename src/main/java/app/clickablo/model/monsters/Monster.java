@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
 
 @Data
@@ -12,6 +13,7 @@ public class Monster {
 
     private final String id;
     private final String name;
+    private final int level;
 
     private final int maxHealth;
     private int currentHealth;
@@ -21,7 +23,7 @@ public class Monster {
     private final boolean champion;
     private final List<Monster> companions;
 
-    public Monster(String name,
+    public Monster(String name, int level,
                    int maxHp,
                    double regenPerSecond,
                    Map<DamageType, Double> resistances,
@@ -29,6 +31,7 @@ public class Monster {
                    List<Monster> companions) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
+        this.level = level;
         this.maxHealth = maxHp;
         this.currentHealth = maxHp;
         this.regenPerSecond = regenPerSecond;
@@ -51,6 +54,13 @@ public class Monster {
 
     public boolean isDead() {
         return currentHealth <= 0;
+    }
+
+    public int getGoldReward() {
+        int min = level;
+        int max = level * 6;
+        Random rand = new Random();
+        return rand.nextInt(max - min + 1) + min;
     }
 
 }

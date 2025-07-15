@@ -25,4 +25,8 @@ public class Zone {
             nextIndex++;
         }
     }
+
+    public void reset() {
+        this.nextIndex = 0;
+    }
 }
