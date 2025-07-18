@@ -1,6 +1,6 @@
 package app.clickablo.manager;
 
-import app.clickablo.model.Character;
+import app.clickablo.model.character.Character;
 import app.clickablo.model.Zone;
 import app.clickablo.model.monsters.Monster;
 import app.clickablo.model.monsters.MonsterTemplate;

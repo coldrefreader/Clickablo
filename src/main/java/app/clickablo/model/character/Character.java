@@ -1,4 +1,4 @@
-package app.clickablo.model;
+package app.clickablo.model.character;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -63,4 +63,16 @@ public class Monster {
         return rand.nextInt(max - min + 1) + min;
     }
 
+    public int getExpReward() {
+        int firstSum = 50;
+        if (level == 1) {
+            return firstSum;
+        } else {
+            for (int i = 2; i <= level; i++) {
+                firstSum = (int) (firstSum * 1.3);
+            }
+            return firstSum;
+        }
+    }
+
 }
