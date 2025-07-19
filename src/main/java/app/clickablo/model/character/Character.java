@@ -1,12 +1,11 @@
 package app.clickablo.model.character;
 
+import app.clickablo.model.items.EquipmentSlot;
+import app.clickablo.model.items.Item;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Data
 @NoArgsConstructor
@@ -21,6 +20,7 @@ public class Character {
 
     private Map<Stat, Integer> stats;
     private List<Item> inventory;
+    private final Map<EquipmentSlot, Item> equipment = new EnumMap<>(EquipmentSlot.class);
     private Map<String, Boolean> monstersDefeated;
 
     public Character(String name,
@@ -60,4 +60,15 @@ public class Character {
         return monstersDefeated.getOrDefault(templateName, false);
     }
 
+    public void equip(Item item) {
+        equipment.put(item.getSlot(), item);
+    }
+
+    public void unequip(Item item) {
+        equipment.remove(item.getSlot());
+    }
+
+    public Item getEquipped(EquipmentSlot slot) {
+        return equipment.get(slot);
+    }
 }
