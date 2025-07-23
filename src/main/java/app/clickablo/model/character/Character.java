@@ -21,6 +21,8 @@ public class Character {
     private Map<Stat, Integer> stats;
     private List<Item> inventory;
     private final Map<EquipmentSlot, Item> equipment = new EnumMap<>(EquipmentSlot.class);
+    private static final int START_XP_REQ = 500;
+    private static final double XP_GROWTH_FACTOR = 1.35;
     private Map<String, Boolean> monstersDefeated;
 
     public Character(String name,
@@ -42,6 +44,11 @@ public class Character {
             exp -= xpForNextLevel();
             level++;
         }
+    }
+
+    public int xpForNextLevel() {
+        double req = START_XP_REQ * Math.pow(XP_GROWTH_FACTOR, level - 1);
+        return (int) Math.floor(req);
     }
 
     public void addGold(int amount) {
