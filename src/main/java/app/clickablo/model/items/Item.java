@@ -25,5 +25,5 @@ public class Item {
     private final Map<DamageType, Double> resistanceBonuses;
 
     private final Double xpGainBonus;
-    private final double goldGainBonus;
+    private final Double goldGainBonus;
 }

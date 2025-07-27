@@ -19,6 +19,7 @@ public class Character {
     private int gold;
 
     private Map<Stat, Integer> stats;
+    private Map<String, Integer> skillpoints;
     private List<Item> inventory;
     private final Map<EquipmentSlot, Item> equipment = new EnumMap<>(EquipmentSlot.class);
     private static final int START_XP_REQ = 500;
@@ -77,5 +78,63 @@ public class Character {
 
     public Item getEquipped(EquipmentSlot slot) {
         return equipment.get(slot);
+    }
+
+    public int getWeaponBaseDamage() {
+        Item main = getEquipped(EquipmentSlot.MAIN_HAND);
+        Item off = getEquipped(EquipmentSlot.OFF_HAND);
+        Item twoHanded = getEquipped(EquipmentSlot.TWO_HANDED);
+
+        if (twoHanded != null) {
+            return twoHanded.getBaseDamage();
+        }
+
+        int dmg = 0;
+        if (main != null) dmg += main.getBaseDamage();
+        if (off != null) dmg += off.getBaseDamage();
+        return dmg;
+    }
+
+    public int getTotalArmour() {
+        int sum = 0;
+        for (EquipmentSlot slot : EquipmentSlot.values()) {
+            Item it = getEquipped(slot);
+            if (it != null && it.getBaseArmour() != null) {
+                sum += it.getBaseArmour();
+            }
+        }
+        return sum;
+    }
+
+    public int getStat(Stat stat) {
+        int base = stats.getOrDefault(stat, 0);
+        for (Item it: equipment.values()) {
+             base += it.getStatBonuses().getOrDefault(stat, 0);
+        }
+        return base;
+    }
+
+    public int getSkillLevel(String skill) {
+        int pt = skillpoints.getOrDefault(skill, 0);
+        for (Item it: equipment.values()) {
+            pt += it.getSkillBonuses().getOrDefault(skill, 0);
+        }
+        return pt;
+    }
+
+    public double getXpGainMultiplier() {
+        double m = 1.0;
+        for (Item it: equipment.values()) {
+            if (it.getXpGainBonus() != null) m *= it.getXpGainBonus();
+        }
+        return m;
+    }
+
+    public double getGoldGainMultiplier() {
+        double m = 1.0;
+        for (Item it: equipment.values()) {
+            if (it.getGoldGainBonus() != null) m *= it.getGoldGainBonus();
+        }
+        return m;
     }
 }
